@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Add Product - Flowmazon",
+};
+
 export default function AddProductPage() {
   return (
     <div>
