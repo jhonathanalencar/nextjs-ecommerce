@@ -1,12 +1,13 @@
+import { cache } from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/db/prisma";
+import { incrementProductQuantity } from "./actions";
 
 import PriceTag from "@/components/PriceTag";
-import { cache } from "react";
-import { Product } from "@prisma/client";
+import AddToCartButton from "./AddToCartButton";
 
 interface ProductPageProps {
   params: {
@@ -58,6 +59,10 @@ export default async function ProductPage({
         <h1 className="text-5xl font-bold">{product.name}</h1>
         <PriceTag price={product.price} className="mt-4" />
         <p className="py-6">{product.description}</p>
+        <AddToCartButton
+          productId={product.id}
+          incrementProductQuantity={incrementProductQuantity}
+        />
       </div>
     </div>
   );
